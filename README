@@ -23,7 +23,14 @@ First, make sure you have jQuery included in your page. Then, include the jquery
 // USAGE
 // ---------------------
 
-Usage is really simple:
+Usage is really simple. First, you need to have some text inputs with the title attribute set to whatever you want the default text to be. For example:
+
+<input type="text" title="First Input" value="" /><br />
+<input type="text" title="Second Input" value="" /><br />
+
+The default text for the inputs will be "First Input" and "Second Input" respectively.
+
+To invoke the plugin, simply use:
 
 $("#element").DefaultText();
 
