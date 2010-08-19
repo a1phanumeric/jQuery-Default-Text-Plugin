@@ -1,27 +1,50 @@
 $.fn.DefaultText = function(options) {
 
     var defaults = {
-        inactiveClass: '',
-        inactiveFontStyle: 'italic',
-        inactiveColour: 'rgb(204,204,204)'
+        inactiveClass:      '',
+        inactiveFontStyle:  'italic',
+        inactiveColour:     'rgb(204,204,204)',
+        activeFontStyle:    'normal',
+        activeColour:       'rgb(0,0,0)'
     };
 
-    // Extend our default options with those provided.
     var opts = $.extend(defaults, options);
-
-    // Our plugin implementation code goes here.
     
     $(this).each(function(){
-        $(this).val($(this).attr('title'));
+        
         if(opts.inactiveClass != ''){
             $(this).addClass(opts.inactiveClass);
         }else{
             $(this).css({'font-style' : opts.inactiveFontStyle, 'color' : opts.inactiveColour});
-            //$(this).css('color', opts.inactiveColour);
-            
         }
-        //alert($(this).attr('title'));
+        
+        $(this).bind('focus', function(){
+            if($(this).val() == $(this).attr('title')){
+                if(opts.inactiveClass != ''){
+                    $(this).removeClass(opts.inactiveClass);
+                }else{
+                    $(this).css({'font-style' : opts.activeFontStyle, 'color' : opts.activeColour});
+                }
+                
+                $(this).val('');
+            }
+        });
+        
+        $(this).bind('blur', function(){
+            if($(this).val() == ''){
+                if(opts.inactiveClass != ''){
+                    $(this).addClass(opts.inactiveClass);
+                }else{
+                    $(this).css({'font-style' : opts.inactiveFontStyle, 'color' : opts.inactiveColour});
+                }
+                
+                $(this).val($(this).attr('title'));
+            }
+        });
+        
+        $(this).blur();
+        $(this).val($(this).attr('title'));
+        
     });
     
 };
-
