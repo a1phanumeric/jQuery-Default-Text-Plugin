@@ -15,35 +15,35 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // SETUP
 // ---------------------
 
-Simply include this class into your project like so:
+First, make sure you have jQuery included in your page. Then, include the jquery.DefaultText.js into your code like so:
 
-include_once('/path/to/class.MySQL.php');
-
-Then make sure you have the following definitions set:
-
-MYSQL_HOST
-MYSQL_USER
-MYSQL_PASS
-MYSQL_NAME
-
-I usually include them in a globally included config file.
-
-MYSQL_HOST = The hostname of the MySQL server (usually, but not always, 'localhost').
-
-MYSQL_USER = Your username for the server / database
-
-MYSQL_PASS = Your password for the server / database
-
-MYSQL_NAME = The name of your database
+<script type="text/javascript" src="jquery.DefaultText.js"></script>
 
 // ---------------------
 // USAGE
 // ---------------------
 
-To use this class, you'd first init the object like so:
+Usage is really simple:
 
-$oMySQL = new MySQL();
+$("#element").DefaultText();
 
-The class constructor will perform a connection to the database automatically. To execute statements simply use:
+Where "#element" is a standard element on your page. You can also use a group of elements, by adding a class to your inputs and using a class selector (like ".elements"). You can also just use "form input:text" to get all the text inputs within a form.
 
-$oMySQL->ExecuteSQL($query);
+// ---------------------
+// PARAMETERS
+// ---------------------
+
+There are some optional parameters you can pass to the plugin.
+
+inactiveClass - This is a class name for the state of the input when it's inactive (the default state). You'd send this like so:
+
+$("#element").DefaultText({inactiveClass : "defaultTextInactive"});
+
+NOTE: If you set this parameter, it will nullify the next four options, which are:
+
+inactiveFontStyle
+inactiveColour
+activeFontStyle
+activeColour
+
+These have default values already set, but you may override them. This is useful if you don't want to use a class for the default state. The Colour options must be in the rgb(x,y,z) format.
